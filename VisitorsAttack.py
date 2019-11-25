@@ -2,17 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.3),
-    on November 03, 2019, at 10:34
-    Copywrite 2019 Joseph E Schroer 
-    ***************************************************************************************/
-*    Title: VisitorsAttack source code
-*    Author: Schroer, J., E.
-*    Date: 2019
-*    Code version: 1.0
-*    Availability: http://www.git.com/jschroer26
-*
-***************************************************************************************/
-    
+    on November 25, 2019, at 12:00
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -20,7 +10,15 @@ If you publish work using this script the most relevant publication is:
         https://doi.org/10.3758/s13428-018-01193-y
 
 """
-
+#***************************************************************************************/
+#*    Title: WhenVisitorsAttack source code
+#*    Author: Schroer, J
+#*    Date: 2019
+#*    Code version: 1.0
+#*    Availability: http://github.com/jschroer26/VisitorsAttack
+#*
+#***************************************************************************************/
+#
 from __future__ import absolute_import, division
 
 from psychopy import locale_setup
@@ -59,7 +57,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\jschro26\\Documents\\Research_EEG\\EEG Experiments\\laser1.py',
+    originPath='C:\\Users\\jschro26\\Documents\\Research\\Research_EEG\\EEG Experiments\\laser1.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -182,14 +180,23 @@ Reflectionfbtext = visual.TextStim(win=win, name='Reflectionfbtext',
 text = visual.TextStim(win=win, name='text',
     text="The Visitors are ready to really test themselves, and they\nthink you are ready, too.\n\nIn the last round, you will be challenged with more mirrors,\nand different mirror set-ups. These set-ups will be controlled\nby the Visitor's Mothership.\nBe careful, and do your best!\n\nPress 'a' to continue...",
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=0.07, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-1.0);
 key_resp_6 = keyboard.Keyboard()
 
-# Initialize components for Routine "MLearning"
-MLearningClock = core.Clock()
+# Initialize components for Routine "ChallengeRound"
+ChallengeRoundClock = core.Clock()
+image = visual.ImageStim(
+    win=win,
+    name='image', 
+    image='sin', mask=None,
+    ori=0, pos=(0, 0), size=(0.7, 0.7),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
+key_resp_7 = keyboard.Keyboard()
 
 # Initialize components for Routine "Finalities"
 FinalitiesClock = core.Clock()
@@ -643,7 +650,7 @@ thisExp.addData('Setup.stopped', Setup.tStopRefresh)
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-feedbacktrials = data.TrialHandler(nReps=1, method='sequential', 
+feedbacktrials = data.TrialHandler(nReps=2, method='sequential', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('..\\\\..\\\\Research_EEG\\\\EEG Experiments\\\\visattackprac2.xlsx'),
     seed=None, name='feedbacktrials')
@@ -842,7 +849,7 @@ for thisFeedbacktrial in feedbacktrials:
     feedbacktrials.addData('fbimage1.stopped', fbimage1.tStopRefresh)
     thisExp.nextEntry()
     
-# completed 1 repeats of 'feedbacktrials'
+# completed 2 repeats of 'feedbacktrials'
 
 # get names of stimulus parameters
 if feedbacktrials.trialList in ([], [None], None):
@@ -960,29 +967,32 @@ thisExp.addData('text.stopped', text.tStopRefresh)
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-mltrials = data.TrialHandler(nReps=1, method='random', 
+crtrials = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
-    trialList=[None],
-    seed=None, name='mltrials')
-thisExp.addLoop(mltrials)  # add the loop to the experiment
-thisMltrial = mltrials.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb = thisMltrial.rgb)
-if thisMltrial != None:
-    for paramName in thisMltrial:
-        exec('{} = thisMltrial[paramName]'.format(paramName))
+    trialList=data.importConditions('..\\\\..\\\\Research_EEG\\\\EEG Experiments\\\\visattackprac3.xlsx'),
+    seed=None, name='crtrials')
+thisExp.addLoop(crtrials)  # add the loop to the experiment
+thisCrtrial = crtrials.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisCrtrial.rgb)
+if thisCrtrial != None:
+    for paramName in thisCrtrial:
+        exec('{} = thisCrtrial[paramName]'.format(paramName))
 
-for thisMltrial in mltrials:
-    currentLoop = mltrials
-    # abbreviate parameter names if possible (e.g. rgb = thisMltrial.rgb)
-    if thisMltrial != None:
-        for paramName in thisMltrial:
-            exec('{} = thisMltrial[paramName]'.format(paramName))
+for thisCrtrial in crtrials:
+    currentLoop = crtrials
+    # abbreviate parameter names if possible (e.g. rgb = thisCrtrial.rgb)
+    if thisCrtrial != None:
+        for paramName in thisCrtrial:
+            exec('{} = thisCrtrial[paramName]'.format(paramName))
     
-    # ------Prepare to start Routine "MLearning"-------
+    # ------Prepare to start Routine "ChallengeRound"-------
     # update component parameters for each repeat
+    image.setImage(visitors)
+    key_resp_7.keys = []
+    key_resp_7.rt = []
     # keep track of which components have finished
-    MLearningComponents = []
-    for thisComponent in MLearningComponents:
+    ChallengeRoundComponents = [image, key_resp_7]
+    for thisComponent in ChallengeRoundComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
         thisComponent.tStartRefresh = None
@@ -992,18 +1002,59 @@ for thisMltrial in mltrials:
     # reset timers
     t = 0
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-    MLearningClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+    ChallengeRoundClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
     frameN = -1
     continueRoutine = True
     
-    # -------Run Routine "MLearning"-------
+    # -------Run Routine "ChallengeRound"-------
     while continueRoutine:
         # get current time
-        t = MLearningClock.getTime()
-        tThisFlip = win.getFutureFlipTime(clock=MLearningClock)
+        t = ChallengeRoundClock.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=ChallengeRoundClock)
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
+        
+        # *image* updates
+        if image.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            image.frameNStart = frameN  # exact frame index
+            image.tStart = t  # local t and not account for scr refresh
+            image.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(image, 'tStartRefresh')  # time at next scr refresh
+            image.setAutoDraw(True)
+        
+        # *key_resp_7* updates
+        waitOnFlip = False
+        if key_resp_7.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            key_resp_7.frameNStart = frameN  # exact frame index
+            key_resp_7.tStart = t  # local t and not account for scr refresh
+            key_resp_7.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(key_resp_7, 'tStartRefresh')  # time at next scr refresh
+            key_resp_7.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(key_resp_7.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(key_resp_7.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if key_resp_7.status == STARTED and not waitOnFlip:
+            theseKeys = key_resp_7.getKeys(keyList=['a', 'b'], waitRelease=False)
+            if len(theseKeys):
+                theseKeys = theseKeys[0]  # at least one key was pressed
+                
+                # check for quit:
+                if "escape" == theseKeys:
+                    endExpNow = True
+                if key_resp_7.keys == []:  # then this was the first keypress
+                    key_resp_7.keys = theseKeys.name  # just the first key pressed
+                    key_resp_7.rt = theseKeys.rt
+                    # was this 'correct'?
+                    if (key_resp_7.keys == str(corrans)) or (key_resp_7.keys == corrans):
+                        key_resp_7.corr = 1
+                    else:
+                        key_resp_7.corr = 0
+                    # a response ends the routine
+                    continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1013,7 +1064,7 @@ for thisMltrial in mltrials:
         if not continueRoutine:  # a component has requested a forced-end of Routine
             break
         continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in MLearningComponents:
+        for thisComponent in ChallengeRoundComponents:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
@@ -1022,23 +1073,40 @@ for thisMltrial in mltrials:
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
     
-    # -------Ending Routine "MLearning"-------
-    for thisComponent in MLearningComponents:
+    # -------Ending Routine "ChallengeRound"-------
+    for thisComponent in ChallengeRoundComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    # the Routine "MLearning" was not non-slip safe, so reset the non-slip timer
+    crtrials.addData('image.started', image.tStartRefresh)
+    crtrials.addData('image.stopped', image.tStopRefresh)
+    # check responses
+    if key_resp_7.keys in ['', [], None]:  # No response was made
+        key_resp_7.keys = None
+        # was no response the correct answer?!
+        if str(corrans).lower() == 'none':
+           key_resp_7.corr = 1;  # correct non-response
+        else:
+           key_resp_7.corr = 0;  # failed to respond (incorrectly)
+    # store data for crtrials (TrialHandler)
+    crtrials.addData('key_resp_7.keys',key_resp_7.keys)
+    crtrials.addData('key_resp_7.corr', key_resp_7.corr)
+    if key_resp_7.keys != None:  # we had a response
+        crtrials.addData('key_resp_7.rt', key_resp_7.rt)
+    crtrials.addData('key_resp_7.started', key_resp_7.tStartRefresh)
+    crtrials.addData('key_resp_7.stopped', key_resp_7.tStopRefresh)
+    # the Routine "ChallengeRound" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed 1 repeats of 'mltrials'
+# completed 1 repeats of 'crtrials'
 
 # get names of stimulus parameters
-if mltrials.trialList in ([], [None], None):
+if crtrials.trialList in ([], [None], None):
     params = []
 else:
-    params = mltrials.trialList[0].keys()
+    params = crtrials.trialList[0].keys()
 # save data for this loop
-mltrials.saveAsExcel(filename + '.xlsx', sheetName='mltrials',
+crtrials.saveAsExcel(filename + '.xlsx', sheetName='crtrials',
     stimOut=params,
     dataOut=['n','all_mean','all_std', 'all_raw'])
 
@@ -1123,4 +1191,3 @@ logging.flush()
 thisExp.abort()  # or data files will save again on exit
 win.close()
 core.quit()
-
